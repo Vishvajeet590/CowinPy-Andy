@@ -7,8 +7,8 @@ Its an easier way to run python script to Covid vaccine slot book developed by [
 
 # Update : 
 You can dowload apk from [Here](https://github.com/Vishvajeet590/CowinPy-Andy/blob/master/APK/CowinPy.apk)
-V1.1 : Automatically detects SMS from COWIN and enters it
-     \n: Beep alert sounds are now suported on Android. 
+V1.1 : Automatically detects SMS from COWIN and enters it<br />
+     : Beep alert sounds are now suported on Android. 
 
 # Screenshots
 
