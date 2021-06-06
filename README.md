@@ -3,9 +3,15 @@
 Its an easier way to run python script to Covid vaccine slot book developed by [@pallupz](https://github.com/pallupz/covid-vaccine-booking) . In earlier version Script have to be run continously on PC/Laptop, But by using Chaquopy we can do that on Android devices. It will be way less power consuming and help folks not having access to Computer Laptops.
 
 
-You can dowload apk from [Here](https://github.com/Vishvajeet590/CowinPy-Andy/blob/master/APK/CowinPy-Andy.apk)
 
-Some Screenshots
+
+# Update : 
+You can dowload apk from [Here](https://github.com/Vishvajeet590/CowinPy-Andy/blob/master/APK/CowinPy.apk)<br />
+<pre>
+V1.1 : Automatically detects SMS from COWIN and enters it<br />
+     : Beep alert sounds are now suported on Android. 
+</pre>
+# Screenshots
 
 ![image](https://user-images.githubusercontent.com/42716731/120796719-c8b48600-c558-11eb-89d1-d325ae77bfec.png)
 
