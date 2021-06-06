@@ -4,6 +4,7 @@ from inputimeout import inputimeout, TimeoutOccurred
 import tabulate, copy, time, datetime, requests, sys, os, random
 from captcha import captcha_builder
 from captcha import decode_captcha
+from threading import Timer
 
 BOOKING_URL = "https://cdn-api.co-vin.in/api/v2/appointment/schedule"
 BENEFICIARIES_URL = "https://cdn-api.co-vin.in/api/v2/appointment/beneficiaries"
@@ -16,6 +17,7 @@ OTP_PRO_URL = 'https://cdn-api.co-vin.in/api/v2/auth/generateMobileOTP'
 WARNING_BEEP_DURATION = (1000, 2000)
 
 
+
 try:
     import winsound
 
@@ -23,13 +25,16 @@ except ImportError:
     import os
 
     def beep(freq, duration):
+
         # apt install sox/brew install sox
         os.system(
                 f"play -n synth {duration/1000} sin {freq} >/dev/null 2>&1")
+        print('BEEP1S')
 
 else:
     def beep(freq, duration):
         winsound.Beep(freq, duration)
+        print('BEEP1S')
 
 
 def viable_options(resp, minimum_slots, min_age_booking, fee_type, dose):
@@ -431,9 +436,16 @@ def check_and_book(request_header, beneficiary_dtls, location_dtls, search_optio
                 random_slot = random.randint(1, len(option['slots']))
                 choice = f'1.{random_slot}'
             else:
-                choice = inputimeout(
-                    prompt='----------> Wait 20 seconds for updated options OR \n----------> Enter a choice e.g: 1.4 for (1st center 4th slot): ',
-                    timeout=20)
+                #choice = inputimeout(
+                    #prompt='----------> Wait 20 seconds for updated options OR \n----------> Enter a choice e.g: 1.4 for (1st center 4th slot): ',
+                    #timeout=20)
+                timeout = 20
+                t = Timer(timeout, print, ['Retry'])
+                t.start()
+                prompt = "You have %d seconds to choose the correct answer...\n" % timeout
+                choice = input(prompt)
+                t.cancel()
+                print(choice)
 
         else:
             try:
@@ -657,6 +669,7 @@ def generate_token_OTP(mobile, request_header):
         sys.exit()
 
     valid_token = False
+
     while not valid_token:
         try:
             data = {"mobile": mobile,
@@ -685,7 +698,8 @@ def generate_token_OTP(mobile, request_header):
                         print('Unable to Validate OTP')
                         print(f"Response: {token.text}")
 
-                        retry = input(f"Retry with {mobile} ? (y/n Default y): ")
+                        #retry = input(f"Retry with {mobile} ? (y/n Default y): ")
+                        retry = 'y'
                         retry = retry if retry else 'y'
                         if retry == 'y':
                             pass

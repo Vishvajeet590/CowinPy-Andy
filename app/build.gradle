@@ -13,7 +13,7 @@ android {
         python {
             // If Chaquopy fails to find Python on your build machine, enable the following
             // line and edit it to point to Python 3.5 or later.
-            // buildPython "C:/Python36/python.exe"
+             buildPython "C:/Users/vishw/AppData/Local/Programs/Python/Python39/python.exe"
 
             pip {
                 install "six"
@@ -22,6 +22,8 @@ android {
                 install "inputimeout"
                 install "beautifulsoup4==4.9.3"
                 install "sox"
+
+
 
 
             }

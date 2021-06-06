@@ -1,6 +1,10 @@
 package com.vishvajeet590.python.utils;
 
 import android.app.*;
+import android.content.BroadcastReceiver;
+import android.content.Context;
+import android.content.Intent;
+import android.content.IntentFilter;
 import android.os.*;
 import android.text.*;
 import android.util.*;
@@ -18,12 +22,17 @@ import com.chaquo.python.*;
 public abstract class PythonConsoleActivity extends ConsoleActivity {
 
     protected Task task;
+    TextView inp;
+    Boolean otpArrive;
 
     @Override protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        otpArrive = false;
         task = ViewModelProviders.of(this).get(getTaskClass());
         if (task.inputType != InputType.TYPE_NULL) {
-            ((TextView) findViewById(resId("id", "etInput"))).setInputType(task.inputType);
+            inp = (TextView) findViewById(resId("id", "etInput"));
+            (inp).setInputType(task.inputType);
+
         }
     }
 
@@ -51,6 +60,7 @@ public abstract class PythonConsoleActivity extends ConsoleActivity {
         int inputType;
         private PyObject stdin, stdout, stderr;
         private PyObject realStdin, realStdout, realStderr;
+
 
         public Task(Application app) {
             this(app, InputType.TYPE_CLASS_TEXT);
@@ -106,6 +116,9 @@ public abstract class PythonConsoleActivity extends ConsoleActivity {
                 // Messages which are empty (or only consist of newlines) will not be logged.
                 Log.i("python.stdin", text.equals("\n") ? " " : text);
             }
+
+
+
             stdin.callAttr("on_input", text);
         }
 
@@ -115,6 +128,16 @@ public abstract class PythonConsoleActivity extends ConsoleActivity {
                 onInput(null);  // Signals EOF
             }
         }
+
+
+
+
+
     }
+
+
+
+
+
 
 }

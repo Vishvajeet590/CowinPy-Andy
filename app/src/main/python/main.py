@@ -1,6 +1,8 @@
 #!/usr/bin/env python3
 
 import copy
+
+
 from types import SimpleNamespace
 import requests, sys, argparse, os, datetime
 from utils import generate_token_OTP, check_and_book, beep, BENEFICIARIES_URL, WARNING_BEEP_DURATION, \
@@ -16,8 +18,7 @@ def main():
     filename = 'vaccine-booking-details.json'
     mobile = None
 
-    print('Running Script')
-    beep(500, 150)
+    print('BEEP1S')
 
     try:
         base_request_header = {
@@ -91,10 +92,12 @@ def main():
             else:
                 # if token invalid, regenerate OTP and new token
                 beep(WARNING_BEEP_DURATION[0], WARNING_BEEP_DURATION[1])
+                print('BEEP1S')
                 print('Token is INVALID.')
                 token_valid = False
 
-                tryOTP = input('Try for a new Token? (y/n Default y): ')
+                #tryOTP = input('Try for a new Token? (y/n Default y): ')
+                tryOTP = 'y'
                 if tryOTP.lower() == 'y' or not tryOTP:
                     if not mobile:
                         mobile = input("Enter the registered mobile number: ")
@@ -108,6 +111,7 @@ def main():
         print(str(e))
         print('Exiting Script')
         os.system("pause")
+
 
 
 if __name__ == '__main__':

@@ -7,6 +7,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.graphics.*;
+import android.media.AudioManager;
+import android.media.ToneGenerator;
 import android.os.*;
 import android.text.*;
 import android.text.style.*;
@@ -18,6 +20,13 @@ import androidx.annotation.*;
 import androidx.appcompat.app.*;
 import androidx.core.content.*;
 import androidx.lifecycle.*;
+
+import java.io.BufferedReader;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStreamReader;
 
 public abstract class ConsoleActivity extends AppCompatActivity
         implements ViewTreeObserver.OnGlobalLayoutListener, ViewTreeObserver.OnScrollChangedListener {
@@ -32,6 +41,7 @@ public abstract class ConsoleActivity extends AppCompatActivity
     private final int MAX_SCROLLBACK_LEN = 100000;
 
     private EditText etInput;
+    boolean enterOTP = false;
     private ScrollView svOutput;
     private TextView tvOutput;
     private int outputWidth = -1, outputHeight = -1;
@@ -56,6 +66,8 @@ public abstract class ConsoleActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         consoleModel = ViewModelProviders.of(this).get(ConsoleModel.class);
         task = ViewModelProviders.of(this).get(getTaskClass());
+        registerReceiver(broadcastReceiver, new IntentFilter("SMSBraodcast"));
+
         setContentView(resId("layout", "activity_console"));
         createInput();
         createOutput();
@@ -281,6 +293,79 @@ public abstract class ConsoleActivity extends AppCompatActivity
             consoleModel.pendingNewline = true;
         } else {
             tvOutput.append(text);
+            Log.d("Test", "output: "+text);
+            String Otptext = "";
+            if (text.toString().equals("BEEP1S")){
+                ToneGenerator toneGen1 = new ToneGenerator(AudioManager.STREAM_MUSIC, 100);
+                toneGen1.startTone(ToneGenerator.TONE_CDMA_ABBR_ALERT,150);
+            }
+
+
+
+            if (text.toString().contains("Enter OTP (If this takes more than 2 minutes, press Enter to retry)")){
+                enterOTP = true;
+            }
+
+
+
+
+
+
+            /*while (true){
+                if (text.toString().contains("Enter OTP")){
+
+                    FileInputStream fis = null;
+                    FileOutputStream fos = null;
+                    try {
+                        fis = openFileInput("OTP");
+                        InputStreamReader isr = new InputStreamReader(fis);
+                        BufferedReader br = new BufferedReader(isr);
+                        StringBuilder sb = new StringBuilder();
+                        String otpText;
+                        while ((otpText = br.readLine()) != null) {
+                            sb.append(otpText).append("\n");
+                        }
+                        Otptext = otpText;
+                        fos = openFileOutput("OTP", MODE_PRIVATE);
+                        fos.close();
+
+
+
+                        //  mEditText.setText(sb.toString());
+                    } catch (FileNotFoundException e) {
+                        e.printStackTrace();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    } finally {
+                        if (fis != null) {
+                            try {
+                                fis.close();
+                            } catch (IOException e) {
+                                e.printStackTrace();
+                            }
+                        }
+                    }
+
+                    if (!Otptext.isEmpty() && Otptext.contains("Otp =")){
+                        String val="";
+                        // REGEX
+
+
+
+
+                    }
+
+
+
+
+                }
+            }*/
+
+
+
+
+
+
         }
 
         Editable scrollback = (Editable) tvOutput.getText();
@@ -399,5 +484,32 @@ public abstract class ConsoleActivity extends AppCompatActivity
             return Utils.resId(getApplication(), type, name);
         }
     }
+
+
+    BroadcastReceiver broadcastReceiver =  new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+
+            Bundle b = intent.getExtras();
+
+            String message = b.getString("message");
+
+            Log.e("Otp", "= " + message);
+            if (enterOTP){
+                etInput.setText(message);
+                BaseInputConnection inputConnection = new BaseInputConnection(etInput, true);
+                inputConnection.sendKeyEvent(new KeyEvent(KeyEvent.ACTION_DOWN, KeyEvent.KEYCODE_ENTER));
+                inputConnection.sendKeyEvent(new KeyEvent(KeyEvent.ACTION_UP, KeyEvent.KEYCODE_ENTER));
+                enterOTP = false;
+            }
+
+            else {
+                enterOTP = false;
+            }
+
+        }
+    };
+
+
 
 }
