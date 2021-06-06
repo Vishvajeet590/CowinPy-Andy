@@ -6,6 +6,7 @@ from captcha import captcha_builder
 from captcha import decode_captcha
 from threading import Timer
 
+
 BOOKING_URL = "https://cdn-api.co-vin.in/api/v2/appointment/schedule"
 BENEFICIARIES_URL = "https://cdn-api.co-vin.in/api/v2/appointment/beneficiaries"
 CALENDAR_URL_DISTRICT = "https://cdn-api.co-vin.in/api/v2/appointment/sessions/calendarByDistrict?district_id={0}&date={1}"
@@ -104,8 +105,10 @@ def confirm_and_proceed(collected_details):
 
 
 def save_user_info(filename, details):
-    print("\n================================= Save Info =================================\n")
-    save_info = input("Would you like to save this as a JSON file for easy use next time?: (y/n Default y): ")
+    #print("\n================================= Save Info =================================\n")
+    #save_info = input("Would you like to save this as a JSON file for easy use next time?: (y/n Default y): ")
+    save_info = 'n'
+
     save_info = save_info if save_info else 'y'
     if save_info == 'y':
         with open(filename, 'w') as f:
