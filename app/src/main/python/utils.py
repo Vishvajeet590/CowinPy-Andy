@@ -360,10 +360,15 @@ def book_appointment(request_header, details):
                 print('##############    BOOKED!  ############################    BOOKED!  ##############')
                 print("                        Hey, Hey, Hey! It's your lucky day!                       ")
                 print('\nPress any key thrice to exit program.')
+                print('\n')
+                print('\n')
+                print('\n')
+                print('I have served my purpose......Closing APP in 20 sec.')
                 os.system("pause")
                 os.system("pause")
                 os.system("pause")
-                #sys.exit()
+                time.sleep(20)
+                sys.exit()
 
             elif resp.status_code == 400:
                 print(f'Response: {resp.status_code} : {resp.text}')
