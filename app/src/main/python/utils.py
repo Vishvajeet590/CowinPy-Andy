@@ -105,16 +105,16 @@ def confirm_and_proceed(collected_details):
 
 
 def save_user_info(filename, details):
-    #print("\n================================= Save Info =================================\n")
-    #save_info = input("Would you like to save this as a JSON file for easy use next time?: (y/n Default y): ")
-    save_info = 'n'
+    print("\n================================= Save Info =================================\n")
+    save_info = input("Would you like to save this as a JSON file for easy use next time?: (y/n Default y): ")
+    #save_info = 'n'
 
-    save_info = save_info if save_info else 'y'
-    if save_info == 'y':
-        with open(filename, 'w') as f:
-            json.dump(details, f)
+    #save_info = save_info if save_info else 'y'
+    #if save_info == 'y':
+    #    with open(filename, 'w') as f:
+    #        json.dump(details, f)
 
-        print(f"Info saved to {filename} in {os.getcwd()}")
+    #    print(f"Info saved to {filename} in {os.getcwd()}")
 
 
 def get_saved_user_info(filename):

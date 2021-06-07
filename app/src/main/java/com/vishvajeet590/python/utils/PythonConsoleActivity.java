@@ -119,6 +119,7 @@ public abstract class PythonConsoleActivity extends ConsoleActivity {
 
 
 
+
             stdin.callAttr("on_input", text);
         }
 

@@ -19,6 +19,7 @@ def main():
     mobile = None
 
     print('BEEP1S')
+    print("STARTING")
 
     try:
         base_request_header = {

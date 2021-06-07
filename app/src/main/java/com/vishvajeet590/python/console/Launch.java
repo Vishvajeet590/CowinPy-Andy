@@ -113,7 +113,7 @@ public class Launch extends AppCompatActivity {
         }
     }
     public void openNewActivity(){
-        Intent intent = new Intent(this, MainActivity.class);
+        Intent intent = new Intent(this, Profile.class);
         startActivity(intent);
     }
 }

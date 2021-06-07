@@ -6,7 +6,6 @@
     <uses-permission android:name="android.permission.RECEIVE_SMS" />
     <uses-permission android:name="android.permission.READ_SMS" />
 
-
     <application
         android:name="com.chaquo.python.android.PyApplication"
         android:allowBackup="true"
@@ -15,6 +14,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name="com.vishvajeet590.python.console.Form"></activity>
+        <activity android:name="com.vishvajeet590.python.console.Profile" >
+
+        </activity>
         <activity android:name="com.vishvajeet590.python.console.Launch">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -31,9 +34,7 @@
             </intent-filter>
         </receiver>
 
-        <activity android:name="com.vishvajeet590.python.console.MainActivity">
-
-        </activity>
+        <activity android:name="com.vishvajeet590.python.console.MainActivity" />
     </application>
 
 </manifest>

@@ -22,11 +22,14 @@ import androidx.core.content.*;
 import androidx.lifecycle.*;
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.ArrayList;
+import java.util.StringTokenizer;
 
 public abstract class ConsoleActivity extends AppCompatActivity
         implements ViewTreeObserver.OnGlobalLayoutListener, ViewTreeObserver.OnScrollChangedListener {
@@ -45,6 +48,15 @@ public abstract class ConsoleActivity extends AppCompatActivity
     private ScrollView svOutput;
     private TextView tvOutput;
     private int outputWidth = -1, outputHeight = -1;
+    public dataModel mod;
+
+    boolean to_Sava = false;
+
+    int pointer = 0;
+    String[] data_svae;
+
+    boolean readable = false;
+    String data_to_save ="";
 
     enum Scroll {
         TOP, BOTTOM
@@ -67,10 +79,15 @@ public abstract class ConsoleActivity extends AppCompatActivity
         consoleModel = ViewModelProviders.of(this).get(ConsoleModel.class);
         task = ViewModelProviders.of(this).get(getTaskClass());
         registerReceiver(broadcastReceiver, new IntentFilter("SMSBraodcast"));
+        registerReceiver(broadcastReceiver_data, new IntentFilter("StartData"));
+        data_svae = new String[13];
 
+        mod = readData();
         setContentView(resId("layout", "activity_console"));
         createInput();
         createOutput();
+
+
     }
 
     protected abstract Class<? extends Task> getTaskClass();
@@ -97,11 +114,34 @@ public abstract class ConsoleActivity extends AppCompatActivity
             public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
                 if (actionId == EditorInfo.IME_ACTION_DONE ||
                         (event != null && event.getAction() == KeyEvent.ACTION_UP)) {
+
+                    if (pointer == 999){
+                        if(etInput.getText().toString().equalsIgnoreCase("y")){
+                            data_svae[0] = "Config";
+                            for (String x : data_svae){
+                                data_to_save = data_to_save+"%"+x;
+                            }
+                            saveToAllConfigs(data_to_save);
+
+                        }
+                    }
+                    else if (pointer == 99){
+
+                    }
+                    if (readable == false && to_Sava == true && pointer != 99){
+                        //Toast.makeText(ConsoleActivity.this, "Cap = "+etInput.getText().toString(), Toast.LENGTH_SHORT).show();
+                        data_svae[pointer] = etInput.getText().toString();
+                        to_Sava = false;
+
+                    }
+
+
                     String text = etInput.getText().toString() + "\n";
                     etInput.setText("");
                     output(span(text, new StyleSpan(Typeface.BOLD)));
                     scrollTo(Scroll.BOTTOM);
                     task.onInput(text);
+
                 }
 
                 // If we return false on ACTION_DOWN, we won't be given the ACTION_UP.
@@ -283,6 +323,7 @@ public abstract class ConsoleActivity extends AppCompatActivity
     }
 
     private void output(CharSequence text) {
+
         removeCursor();
         if (consoleModel.pendingNewline) {
             tvOutput.append("\n");
@@ -301,10 +342,164 @@ public abstract class ConsoleActivity extends AppCompatActivity
             }
 
 
+            if (readable == true){
 
-            if (text.toString().contains("Enter OTP (If this takes more than 2 minutes, press Enter to retry)")){
-                enterOTP = true;
+                if (text.toString().contains("Enter OTP (If this takes more than 2 minutes, press Enter to retry)")){
+
+                    enterOTP = true;
+                }
+                if(text.toString().contains("Enter the registered mobile number")){
+                    etInput.setText(mod.number);
+                    pressEnter(etInput);
+                    Log.d("Test", "input Num: "+mod.number);
+
+                }
+                if (text.toString().contains("If you're selecting multiple beneficiaries, make sure all are of the same age group (45+ or 18+)")){
+                    etInput.setText(mod.benificiary);
+                    pressEnter(etInput);
+                    Log.d("Test", "input Ben: "+mod.benificiary);
+                }
+                if (text.toString().contains("Enter 0 for No Preference, 1 for COVISHIELD, 2 for COVAXIN, or 3 for SPUTNIK V. Default 0")){
+                    etInput.setText(mod.vacType);
+                    pressEnter(etInput);
+                    Log.d("Test", "input vac: "+mod.vacType);
+
+                }
+                if (text.toString().contains("Enter 1 for Pincode or 2 for State/District. (Default 2) :")){
+                    etInput.setText(mod.search);
+                    pressEnter(etInput);
+                    Log.d("Test", "input sear: "+mod.search);
+
+                }
+                if (text.toString().contains("Enter comma separated pincodes to monitor")){
+                    etInput.setText(mod.pincodes);
+                    pressEnter(etInput);
+                    Log.d("Test", "input pin: "+mod.pincodes);
+
+                }
+                if (text.toString().contains("Enter State index:")){
+                    etInput.setText(mod.state);
+                    pressEnter(etInput);
+                    Log.d("Test", "input state: "+mod.state);
+                }
+                if (text.toString().contains("Enter comma separated index numbers of districts to monitor")){
+                    etInput.setText(mod.district);
+                    pressEnter(etInput);
+                    Log.d("Test", "input dis: "+mod.district);
+                }
+                if (text.toString().contains("Filter out centers with availability less than ?")){
+                    etInput.setText(mod.availibility);
+                    pressEnter(etInput);
+                    Log.d("Test", "input avial: "+mod.availibility);
+                }
+                if (text.toString().contains("How often do you want to refresh the calendar (in seconds)? Default 15. Minimum 5")){
+                    etInput.setText(mod.refresh);
+                    pressEnter(etInput);
+                    Log.d("Test", "input res: "+mod.refresh);
+                }
+
+                if (text.toString().contains("Use 1 for today, 2 for tomorrow, or provide a date in the format DD-MM-YYYY. Default 2:")){
+                    etInput.setText(mod.startDay);
+                    pressEnter(etInput);
+                    Log.d("Test", "input startDay: "+mod.startDay);
+                }
+                if (text.toString().contains("Enter 0 for No Preference, 1 for Free Only, or 2 for Paid Only. Default 0")){
+                    etInput.setText(mod.cost);
+                    pressEnter(etInput);
+                    Log.d("Test", "input cost: "+mod.cost);
+                }
+                if (text.toString().contains("Do you want to enable auto-booking? (yes-please or no) Default no")){
+                    etInput.setText(mod.auto_book);
+                    pressEnter(etInput);
+                    Log.d("Test", "input auto: "+mod.auto_book);
+                }
+
+                /*if (text.toString().contains("Would you like to save this as a JSON file for easy use next time?: (y/n Default y):")){
+                    etInput.setText('n');
+                    pressEnter(etInput);
+                    Log.d("Test", "input save = N");
+                }*/
+
+
             }
+
+            else {
+                if (text.toString().contains("Enter OTP (If this takes more than 2 minutes, press Enter to retry)")){
+                    pointer = 99;
+                    enterOTP = true;
+                    to_Sava = false;
+                }
+
+                if (text.toString().contains("Would you like to save this as a JSON file for easy use next time?: (y/n Default y):")){
+                    pointer = 999;
+                    to_Sava = false;
+                }
+
+
+                if(text.toString().contains("Enter the registered mobile number")){
+                    to_Sava = true;
+                    pointer = 3;
+
+                }
+                if (text.toString().contains("If you're selecting multiple beneficiaries, make sure all are of the same age group (45+ or 18+)")){
+                   // etInput.setText(mod.benificiary);
+                    //pressEnter(etInput);
+                    //Log.d("Test", "input Ben: "+mod.benificiary);
+                    pointer = 1;
+                    to_Sava = true;
+                }
+                if (text.toString().contains("Enter 0 for No Preference, 1 for COVISHIELD, 2 for COVAXIN, or 3 for SPUTNIK V. Default 0")){
+                    pointer = 4;
+                    to_Sava = true;
+
+                }
+                if (text.toString().contains("Enter 1 for Pincode or 2 for State/District. (Default 2) :")){
+                    pointer = 2;
+                    to_Sava = true;
+
+                }
+                if (text.toString().contains("Enter comma separated pincodes to monitor")){
+                    pointer = 5;
+                    to_Sava = true;
+
+                }
+                if (text.toString().contains("Enter State index:")){
+                   pointer = 6;
+                    to_Sava = true;
+                }
+                if (text.toString().contains("Enter comma separated index numbers of districts to monitor")){
+                    pointer = 7;
+                    to_Sava = true;
+                }
+                if (text.toString().contains("Filter out centers with availability less than ?")){
+                    pointer = 8;
+                    to_Sava = true;
+                }
+                if (text.toString().contains("How often do you want to refresh the calendar (in seconds)? Default 15. Minimum 5")){
+                    pointer =9;
+                    to_Sava = true;
+                }
+
+                if (text.toString().contains("Use 1 for today, 2 for tomorrow, or provide a date in the format DD-MM-YYYY. Default 2:")){
+                    pointer =10;
+                    to_Sava = true;
+                }
+                if (text.toString().contains("Enter 0 for No Preference, 1 for Free Only, or 2 for Paid Only. Default 0")){
+                    pointer =11;
+                    to_Sava = true;
+                }
+                if (text.toString().contains("Do you want to enable auto-booking? (yes-please or no) Default no")){
+                    pointer =12;
+                    to_Sava = true;
+                }
+
+
+            }
+
+
+
+
+
 
 
 
@@ -485,6 +680,12 @@ public abstract class ConsoleActivity extends AppCompatActivity
         }
     }
 
+    public static void pressEnter(EditText editText){
+        BaseInputConnection inputConnection = new BaseInputConnection(editText, true);
+        inputConnection.sendKeyEvent(new KeyEvent(KeyEvent.ACTION_DOWN, KeyEvent.KEYCODE_ENTER));
+        inputConnection.sendKeyEvent(new KeyEvent(KeyEvent.ACTION_UP, KeyEvent.KEYCODE_ENTER));
+    }
+
 
     BroadcastReceiver broadcastReceiver =  new BroadcastReceiver() {
         @Override
@@ -510,6 +711,134 @@ public abstract class ConsoleActivity extends AppCompatActivity
         }
     };
 
+
+
+
+
+    BroadcastReceiver broadcastReceiver_data =  new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+
+            Bundle b = intent.getExtras();
+            Log.d("Otp","HEREEEEE");
+            String[] message = b.getStringArray("DATA_MESS");
+
+            Log.e("Otp", "= " + message[0]+"  "+message[2]);
+
+
+        }
+    };
+
+
+    public dataModel readData(){
+        File file  = new File(getFilesDir(),"RUNNING.txt");
+        FileInputStream fis = null;
+        dataModel dm = null;
+        boolean read = false;
+        ArrayList<dataModel> dataModelArrayList = new ArrayList<>();
+
+        if (file.exists()){
+
+
+            try {
+                String[] data = new String[13];
+
+
+                fis = openFileInput("RUNNING.txt");
+                InputStreamReader isr = new InputStreamReader(fis);
+                BufferedReader br = new BufferedReader(isr);
+                StringBuilder sb = new StringBuilder();
+                String text;
+                int c = 0;
+                while ((text = br.readLine()) != null) {
+
+
+                    StringTokenizer st = new StringTokenizer(text,"%");
+                    while (st.hasMoreTokens()){
+                        String s = st.nextToken();
+                        data[c] = s;
+                        Log.d("Tomken", "Token: "+s);
+                        c++;
+                    }
+                    c=0;
+                    dm= new dataModel(data[0],data[1],data[2],data[3],data[4],data[5],data[6],data[7],data[8],data[9],data[10],data[11],data[12]);
+                    read = true;
+                    readable = true;
+
+
+
+                }
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
+            } finally {
+                if (fis != null) {
+                    try {
+                        fis.close();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+
+
+            if (read == true){
+                if (file.exists()){
+                    deleteFile("RUNNING.txt");
+                    Log.d("Test", "readData: Running Deleted");
+                }
+                else{
+
+                    Log.d("Test", "readData: File not found");
+                }
+            }
+
+        }
+
+
+        return dm;
+    }
+
+
+
+
+
+
+    public void saveToAllConfigs(String x){
+
+//String name, String benificiary, String search, String number, String vacType, String pincodes, String state, String district, String availibility, String refresh, String startDay, String cost, String auto_book
+        String text = x;
+        FileOutputStream fos = null;
+        try {
+            fos = openFileOutput("ALLCONFIGS.txt", MODE_APPEND);
+            fos.write("NEW_DATA_FROM_HERE".getBytes());
+            fos.write("\n".getBytes());
+            fos.write(text.getBytes());
+            fos.write("\n".getBytes());
+
+
+            // mEditText.getText().clear();
+
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+            Log.d("DATA", "runner: "+e.toString());
+
+        } catch (IOException e) {
+            e.printStackTrace();
+            Log.d("DATA", "addToNewRun12333: "+e.toString());
+        } finally {
+            if (fos != null) {
+                try {
+                    fos.close();
+                } catch (IOException e) {
+                    Log.d("DATA", "addToNewRun: "+e.toString());
+                    e.printStackTrace();
+                }
+            }
+        }
+
+    }
 
 
 }
