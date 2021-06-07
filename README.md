@@ -37,14 +37,14 @@ V1.2 : Added feature to save multiple configurations of JSON.
 
 
 
-<img src="https://user-images.githubusercontent.com/42716731/120796719-c8b48600-c558-11eb-89d1-d325ae77bfec.png" width="350">   
+<img src="https://user-images.githubusercontent.com/42716731/120796719-c8b48600-c558-11eb-89d1-d325ae77bfec.png" width="550">   
 
 
 
-<img src="https://user-images.githubusercontent.com/42716731/120796625-a6bb0380-c558-11eb-9faa-e7d084eb01cc.png" width="350">   
+<img src="https://user-images.githubusercontent.com/42716731/120796625-a6bb0380-c558-11eb-9faa-e7d084eb01cc.png" width="550">   
 
 
 
-<img src="https://user-images.githubusercontent.com/42716731/120796764-d702a200-c558-11eb-8045-1a40ed26c965.png" width="350">   
+<img src="https://user-images.githubusercontent.com/42716731/120796764-d702a200-c558-11eb-8045-1a40ed26c965.png" width="550">   
 
 
