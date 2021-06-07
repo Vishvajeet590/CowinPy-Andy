@@ -27,7 +27,6 @@ V1.2 : Added feature to save multiple configurations of JSON.
 
 # Screenshots
 
-![image]( | width=100)  
 <img src="https://user-images.githubusercontent.com/42716731/121064853-b69b4780-c7e5-11eb-9bb7-1317c406bbbe.png" width="250">         <img src="https://user-images.githubusercontent.com/42716731/121064869-bbf89200-c7e5-11eb-8e70-736d350ca904.png" width="250">         <img src="https://user-images.githubusercontent.com/42716731/121064899-c450cd00-c7e5-11eb-98be-8786c0658248.png" width="250">
 
 
