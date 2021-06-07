@@ -28,7 +28,7 @@ V1.2 : Added feature to save multiple configurations of JSON.
 # Screenshots
 
 ![image]( | width=100)  
-<img src="https://user-images.githubusercontent.com/42716731/121064853-b69b4780-c7e5-11eb-9bb7-1317c406bbbe.png" width="250">     <img src="https://user-images.githubusercontent.com/42716731/121064869-bbf89200-c7e5-11eb-8e70-736d350ca904.png" width="250"> <img src="https://user-images.githubusercontent.com/42716731/121064899-c450cd00-c7e5-11eb-98be-8786c0658248.png" width="250">
+<img src="https://user-images.githubusercontent.com/42716731/121064853-b69b4780-c7e5-11eb-9bb7-1317c406bbbe.png" width="250">         <img src="https://user-images.githubusercontent.com/42716731/121064869-bbf89200-c7e5-11eb-8e70-736d350ca904.png" width="250">         <img src="https://user-images.githubusercontent.com/42716731/121064899-c450cd00-c7e5-11eb-98be-8786c0658248.png" width="250">
 
 
 
@@ -37,13 +37,14 @@ V1.2 : Added feature to save multiple configurations of JSON.
 
 
 
-![image](https://user-images.githubusercontent.com/42716731/120796719-c8b48600-c558-11eb-89d1-d325ae77bfec.png)
+<img src="https://user-images.githubusercontent.com/42716731/120796719-c8b48600-c558-11eb-89d1-d325ae77bfec.png" width="350">   
 
 
 
-![image](https://user-images.githubusercontent.com/42716731/120796625-a6bb0380-c558-11eb-9faa-e7d084eb01cc.png)
+<img src="https://user-images.githubusercontent.com/42716731/120796625-a6bb0380-c558-11eb-9faa-e7d084eb01cc.png" width="350">   
 
 
 
-![image](https://user-images.githubusercontent.com/42716731/120796764-d702a200-c558-11eb-8045-1a40ed26c965.png)
+<img src="https://user-images.githubusercontent.com/42716731/120796764-d702a200-c558-11eb-8045-1a40ed26c965.png" width="350">   
+
 
