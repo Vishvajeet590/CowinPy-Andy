@@ -5,6 +5,7 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.vishvajeet590.python.utils.RecyclerviewClickInterface;
 import com.vishvajeet590.python.utils.configAdapter;
 import com.vishvajeet590.python.utils.dataModel;
 
@@ -16,6 +17,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.chaquo.python.console.R;
 
@@ -28,11 +30,12 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.StringTokenizer;
 
-public class Profile extends AppCompatActivity {
+public class Profile extends AppCompatActivity implements RecyclerviewClickInterface {
 
     RecyclerView recyclerView;
     RecyclerView.Adapter mAdapter;
     RecyclerView.LayoutManager mManaager;
+    ArrayList<dataModel> models;
 
     ImageView nodata;
     TextView noText,select;
@@ -49,7 +52,7 @@ public class Profile extends AppCompatActivity {
         select = findViewById(R.id.select);
 
         //ArrayList<dataModel> models = fetchdata();
-        ArrayList<dataModel> models = fetchdata();
+         models = fetchdata();
         if (models.size() == 0){
             recyclerView.setVisibility(View.GONE);
             select.setVisibility(View.GONE);
@@ -63,7 +66,7 @@ public class Profile extends AppCompatActivity {
             noText.setVisibility(View.GONE);
             recyclerView.setHasFixedSize(true);
             mManaager = new LinearLayoutManager(this);
-            mAdapter = new configAdapter(models,this);
+            mAdapter = new configAdapter(models,this,this);
             recyclerView.setLayoutManager(mManaager);
             recyclerView.setAdapter(mAdapter);
 
@@ -99,22 +102,46 @@ public class Profile extends AppCompatActivity {
             InputStreamReader isr = new InputStreamReader(fis);
             BufferedReader br = new BufferedReader(isr);
             StringBuilder sb = new StringBuilder();
-            String text;
+            String text ;
             int c = 0;
             int con = 1;
+            Log.d("INSIDE","GOING INSIDE");
+
             while ((text = br.readLine()) != null) {
-                if (text.equals("NEW_DATA_FROM_HERE")){
-                    String l = br.readLine();
-                    Log.d("Line ",l);
-                    StringTokenizer st = new StringTokenizer(l,"%");
-                    while (st.hasMoreTokens()){
-                        data[c] = st.nextToken();
-                        c++;
+                if (text != null){
+                    Log.d("INSIDE",text);
+                    StringTokenizer st = new StringTokenizer(text, "<");
+                    ArrayList<String> capsule = new ArrayList<>();
+                    while (st.hasMoreTokens()) {
+                        capsule.add(st.nextToken());
                     }
-                    c=0;
-                    dataModelArrayList.add(new dataModel(data[0]+" "+con,data[1],data[2],data[3],data[4],data[5],data[6],data[7],data[8],data[9],data[10],data[11],data[12]));
-                    con++;
+
+                    for (String xy : capsule) {
+                        Log.d("INSIDE",xy);
+                        StringTokenizer sta = new StringTokenizer(xy, "%");
+                        try {
+                            while (sta.hasMoreTokens()) {
+                                data[c] = sta.nextToken();
+                                c++;
+                            }
+                            c = 0;
+                            dataModelArrayList.add(new dataModel(data[0] + " " + con, data[1], data[2], data[3], data[4], data[5], data[6], data[7], data[8], data[9], data[10], data[11], data[12]));
+                            con++;
+                        }
+                        catch (ArrayIndexOutOfBoundsException e){
+                            e.printStackTrace();
+                        }
+                        finally {
+                            Log.d("fetchdata", "fetchdata: error ");
+                        }
+
+                    }
+
+
                 }
+
+
+
 
             }
         } catch (FileNotFoundException e) {
@@ -139,5 +166,47 @@ public class Profile extends AppCompatActivity {
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
     }
+
+    @Override
+    public void onItemClick(int pos) {
+        addToNewRun(models,pos);
+        Intent myIntent = new Intent(this, MainActivity.class);
+        startActivity(myIntent);
+
+    }
+
+
+
+    public void addToNewRun(ArrayList<dataModel> list,int pos){
+        dataModel model = list.get(pos);
+//String name, String benificiary, String search, String number, String vacType, String pincodes, String state, String district, String availibility, String refresh, String startDay, String cost, String auto_book
+        String text = model.name+"%"+model.benificiary+"%"+model.search+"%"+model.number+"%"+model.vacType+"%"+model.pincodes+"%"+model.state+"%"+model.district+"%"+model.availibility+"%"+model.refresh+"%"+model.startDay+"%"+model.cost+"%"+model.auto_book;
+        FileOutputStream fos = null;
+        try {
+
+            fos = openFileOutput("RUNNING.txt", MODE_PRIVATE);
+            fos.write(text.getBytes());
+            // mEditText.getText().clear();
+
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+            Log.d("DATA", "runner: "+e.toString());
+
+        } catch (IOException e) {
+            e.printStackTrace();
+            Log.d("DATA", "addToNewRun12333: "+e.toString());
+        } finally {
+            if (fos != null) {
+                try {
+                    fos.close();
+                } catch (IOException e) {
+                    Log.d("DATA", "addToNewRun: "+e.toString());
+                    e.printStackTrace();
+                }
+            }
+        }
+
+    }
+
 }
 

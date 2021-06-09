@@ -49,6 +49,8 @@ public abstract class ConsoleActivity extends AppCompatActivity
     private TextView tvOutput;
     private int outputWidth = -1, outputHeight = -1;
     public dataModel mod;
+    private Button refreshBtn;
+    public  boolean refreshNow = false;
 
     boolean to_Sava = false;
 
@@ -80,6 +82,7 @@ public abstract class ConsoleActivity extends AppCompatActivity
         task = ViewModelProviders.of(this).get(getTaskClass());
         registerReceiver(broadcastReceiver, new IntentFilter("SMSBraodcast"));
         registerReceiver(broadcastReceiver_data, new IntentFilter("StartData"));
+
         data_svae = new String[13];
 
         mod = readData();
@@ -94,6 +97,16 @@ public abstract class ConsoleActivity extends AppCompatActivity
 
     private void createInput() {
         etInput = findViewById(resId("id", "etInput"));
+        refreshBtn = findViewById(resId("id","refreshBtn"));
+        refreshBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startRefresh(etInput);
+            }
+        });
+
+
+
 
         // Strip formatting from pasted text.
         etInput.addTextChangedListener(new TextWatcher() {
@@ -122,6 +135,7 @@ public abstract class ConsoleActivity extends AppCompatActivity
                                 data_to_save = data_to_save+"%"+x;
                             }
                             saveToAllConfigs(data_to_save);
+                            data_to_save = "";
 
                         }
                     }
@@ -808,17 +822,14 @@ public abstract class ConsoleActivity extends AppCompatActivity
     public void saveToAllConfigs(String x){
 
 //String name, String benificiary, String search, String number, String vacType, String pincodes, String state, String district, String availibility, String refresh, String startDay, String cost, String auto_book
-        String text = x;
+        String text = x+"<";
         FileOutputStream fos = null;
         try {
             fos = openFileOutput("ALLCONFIGS.txt", MODE_APPEND);
-            fos.write("NEW_DATA_FROM_HERE".getBytes());
-            fos.write("\n".getBytes());
             fos.write(text.getBytes());
-            fos.write("\n".getBytes());
+            Log.d("TAG", "saveToAllConfigs: ="+x);
 
 
-            // mEditText.getText().clear();
 
         } catch (FileNotFoundException e) {
             e.printStackTrace();
@@ -838,6 +849,18 @@ public abstract class ConsoleActivity extends AppCompatActivity
             }
         }
 
+    }
+
+
+
+    public void startRefresh(EditText editText){
+        BaseInputConnection inputConnection = new BaseInputConnection(editText, true);
+        inputConnection.sendKeyEvent(new KeyEvent(KeyEvent.ACTION_DOWN, KeyEvent.KEYCODE_CTRL_RIGHT));
+        inputConnection.sendKeyEvent(new KeyEvent(KeyEvent.ACTION_DOWN, KeyEvent.KEYCODE_C));
+        inputConnection.sendKeyEvent(new KeyEvent(KeyEvent.ACTION_DOWN, KeyEvent.KEYCODE_ENTER));
+        inputConnection.sendKeyEvent(new KeyEvent(KeyEvent.ACTION_UP, KeyEvent.KEYCODE_ENTER));
+        inputConnection.sendKeyEvent(new KeyEvent(KeyEvent.ACTION_UP, KeyEvent.KEYCODE_CTRL_LEFT));
+        inputConnection.sendKeyEvent(new KeyEvent(KeyEvent.ACTION_UP, KeyEvent.KEYCODE_C));
     }
 
 

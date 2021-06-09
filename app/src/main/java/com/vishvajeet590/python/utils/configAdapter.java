@@ -27,13 +27,15 @@ import static android.content.Context.MODE_PRIVATE;
 public class configAdapter extends RecyclerView.Adapter<configAdapter.configViewHolder> {
     private ArrayList<dataModel> models;
     private Context context1;
+    private RecyclerviewClickInterface clickInterface;
 
-    public configAdapter(ArrayList<dataModel> modelArrayList, Context context){
+    public configAdapter(ArrayList<dataModel> modelArrayList, Context context , RecyclerviewClickInterface recyclerviewClickInterface){
         models = modelArrayList;
         context1 = context;
+        clickInterface = recyclerviewClickInterface;
     }
 
-    public static class configViewHolder extends RecyclerView.ViewHolder{
+    public  class configViewHolder extends RecyclerView.ViewHolder{
         TextView name,ben,search,vacc;
         ConstraintLayout layout;
 
@@ -44,6 +46,13 @@ public class configAdapter extends RecyclerView.Adapter<configAdapter.configView
             search = itemView.findViewById(R.id.searcht);
             layout = itemView.findViewById(R.id.item_cons);
             vacc = itemView.findViewById(R.id.vac);
+
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    clickInterface.onItemClick(getAdapterPosition());
+                }
+            });
         }
     }
 
@@ -62,16 +71,7 @@ public class configAdapter extends RecyclerView.Adapter<configAdapter.configView
         holder.ben.setText("Ben : "+model.benificiary);
         holder.search.setText("Search type : "+model.search);
         holder.vacc.setText("Vaccine : "+model.vacType);
-
-        holder.layout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Log.d("DATA", "onClick: "+ position);
-                addToNewRun(models,position);
-                Intent myIntent = new Intent(context1, MainActivity.class);
-                context1.startActivity(myIntent);
-            }
-        });
+        
 
 
 

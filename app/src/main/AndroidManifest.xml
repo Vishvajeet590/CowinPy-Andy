@@ -14,10 +14,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name="com.vishvajeet590.python.console.Form"></activity>
-        <activity android:name="com.vishvajeet590.python.console.Profile" >
-
-        </activity>
+        <activity android:name="com.vishvajeet590.python.console.OtpToPc"></activity>
+        <activity android:name="com.vishvajeet590.python.console.Form" />
+        <activity android:name="com.vishvajeet590.python.console.Profile"></activity>
         <activity android:name="com.vishvajeet590.python.console.Launch">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
