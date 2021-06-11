@@ -7,7 +7,7 @@ You can dowload Beta apk from [Here](https://github.com/Vishvajeet590/CowinPy-An
 
 
 
-**If possible notify if it works or if any problem immediately create new issue. Also, share this repository with others if you liked .**
+**If possible notify if it works or if any problem immediately create new issue. Also, STAR this repository with others if you liked. It keeps me motivated**
 
 
 
