@@ -62,5 +62,19 @@ That's it now run the main.py in terminal.
 <img src="https://user-images.githubusercontent.com/42716731/121648920-a3be9680-cab5-11eb-8384-6dba32e3ba71.png" width="750">
 
 
+# Use Otp2Pc in your project 
+
+Download otpServer.py file from [Here](https://github.com/Vishvajeet590/CowinPy-Andy/blob/master/Otp2Pc) and add it to your working directory
+```python
+from otpServer import getOtp
+
+# use this function whereever you want OTP
+
+OTP = getOtp()
+
+```
+
+
+
 
 
