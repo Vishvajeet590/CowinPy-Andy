@@ -5,6 +5,8 @@
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.RECEIVE_SMS" />
     <uses-permission android:name="android.permission.READ_SMS" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
 
     <application
         android:name="com.chaquo.python.android.PyApplication"
@@ -14,7 +16,17 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name="com.vishvajeet590.python.console.OtpToPc"></activity>
+
+        <receiver android:name="com.vishvajeet590.python.utils.SMSBraodcast" android:exported="true" >
+            <intent-filter>
+                <action android:name="android.provider.Telephony.SMS_RECEIVED"/>
+            </intent-filter>
+        </receiver>
+
+
+        <activity android:name="com.vishvajeet590.python.console.OtpToPc">
+
+        </activity>
         <activity android:name="com.vishvajeet590.python.console.Form" />
         <activity android:name="com.vishvajeet590.python.console.Profile"></activity>
         <activity android:name="com.vishvajeet590.python.console.Launch">

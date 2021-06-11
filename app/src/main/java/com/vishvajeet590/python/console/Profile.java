@@ -14,6 +14,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -37,6 +38,8 @@ public class Profile extends AppCompatActivity implements RecyclerviewClickInter
     RecyclerView.LayoutManager mManaager;
     ArrayList<dataModel> models;
 
+    ImageButton pcBtn;
+
     ImageView nodata;
     TextView noText,select;
     Button startFresh;
@@ -50,6 +53,7 @@ public class Profile extends AppCompatActivity implements RecyclerviewClickInter
         noText = findViewById(R.id.notext);
         nodata = findViewById(R.id.noimage);
         select = findViewById(R.id.select);
+        pcBtn = findViewById(R.id.otpPcBtn);
 
         //ArrayList<dataModel> models = fetchdata();
          models = fetchdata();
@@ -84,6 +88,14 @@ public class Profile extends AppCompatActivity implements RecyclerviewClickInter
             @Override
             public void onClick(View v) {
                 openNewActivity();
+            }
+        });
+
+        pcBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                openPCActivity();
+
             }
         });
 
@@ -164,6 +176,12 @@ public class Profile extends AppCompatActivity implements RecyclerviewClickInter
 
     public void openNewActivity(){
         Intent intent = new Intent(this, MainActivity.class);
+        startActivity(intent);
+    }
+
+
+    public void openPCActivity(){
+        Intent intent = new Intent(this, OtpToPc.class);
         startActivity(intent);
     }
 
