@@ -22,7 +22,8 @@ V1.1 : Automatically detects SMS from COWIN and enters it.<br />
 
 <pre>
 Dev Branch
-V1.2 : Added feature to save multiple configurations of JSON.
+V2.0 : Added feature to send OTP to PC version of script.
+     : Fixed crashing bugs.
 </pre>
 
 # Screenshots
