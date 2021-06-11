@@ -50,17 +50,14 @@ Note : Pc and android device must be connected to a common network (Same wifi or
 
 Step 1 : Download Beta APK from [Here](https://github.com/Vishvajeet590/CowinPy-Andy/blob/master/APK/CowinPy%20Test.apk) and Zip containg all files from OtpTOPc folder from [Here](https://github.com/Vishvajeet590/CowinPy-Andy/blob/master/Otp2Pc/Otp2Pc.rar). Run OtpServer.py in terminal.
 
-<img src="https://user-images.githubusercontent.com/42716731/121645334-b3d47700-cab1-11eb-91c8-045e832d6648.png" width="750">
+<img src="https://user-images.githubusercontent.com/42716731/121730370-39d1db80-cb0d-11eb-9926-c6b0fb10763c.png" width="750">
 
 Step 2 : Open app on your device and press Laptop icon on top right corner. Enter the details in App and hit Handshake. When you see "You are connected", press Save in app.<br />
          ( I have not added many checks (LAZY) so please enter as they appear on screen ) 
 
-<img src="https://user-images.githubusercontent.com/42716731/121730370-39d1db80-cb0d-11eb-9926-c6b0fb10763c.png" width="250">
+<img src="https://user-images.githubusercontent.com/42716731/121730648-9a611880-cb0d-11eb-94e9-7b3a45016bb6.png" width="250">
 
 That's it now run the main.py in terminal.🤞
-
-<img src="https://user-images.githubusercontent.com/42716731/121730648-9a611880-cb0d-11eb-94e9-7b3a45016bb6.png" width="750">
-
 
 # BONUS : Use Otp2Pc in your project 🤘
 
