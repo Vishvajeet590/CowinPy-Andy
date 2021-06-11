@@ -46,8 +46,8 @@ V2.0 : Added feature to save JSON for diffrent profiles configuration.
 
 
 # Setup process for Otp to Pc feature
-<pre>
-Step 1 : Download Beta APK and Zip containg all files from OtpTOPc folder from [Here](https://github.com/Vishvajeet590/CowinPy-Andy/blob/master/Otp2Pc/Otp2Pc.rar) . Run OtpServer.py in terminal.
+
+Step 1 : Download Beta APK and Zip containg all files from OtpTOPc folder from [Here](https://github.com/Vishvajeet590/CowinPy-Andy/blob/master/Otp2Pc/Otp2Pc.rar). Run OtpServer.py in terminal.
 
 <img src="https://user-images.githubusercontent.com/42716731/121645334-b3d47700-cab1-11eb-91c8-045e832d6648.png" width="750">
 
@@ -60,5 +60,5 @@ That's it now run the main.py in terminal.
 <img src="https://user-images.githubusercontent.com/42716731/121648920-a3be9680-cab5-11eb-8384-6dba32e3ba71.png" width="750">
 
 
-</pre>
+
 
