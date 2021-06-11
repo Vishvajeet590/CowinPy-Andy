@@ -1,0 +1,6 @@
+reportlab==3.5.67
+inputimeout==1.0.4
+tabulate==0.8.9
+requests==2.25.1
+svglib==1.1.0
+PySimpleGUI==4.43.0
