@@ -33,12 +33,6 @@ V2.0 : Added feature to send OTP to PC version of script.
 <img src="https://user-images.githubusercontent.com/42716731/121639208-d367a180-caa9-11eb-8879-9defade8afda.png" width="250">         <img src="https://user-images.githubusercontent.com/42716731/121639083-a6b38a00-caa9-11eb-9461-9b7761361003.png" width="250">
 
 
-
-
-
-
-
-
 <img src="https://user-images.githubusercontent.com/42716731/120796719-c8b48600-c558-11eb-89d1-d325ae77bfec.png" width="550">   
 
 
@@ -50,20 +44,13 @@ V2.0 : Added feature to send OTP to PC version of script.
 <img src="https://user-images.githubusercontent.com/42716731/120796764-d702a200-c558-11eb-8045-1a40ed26c965.png" width="550">   
 
 
-
-
-
 # Setup process for Otp to Pc feature
 <pre>
-Step 1 : Download beta APK and Zip containg all files from OtpTOPc folder from [Here](https://github.com/Vishvajeet590/CowinPy-Andy/blob/master/Otp2Pc/Otp2Pc.rar).
-Step 2 : Run OtpServer.py in terminal. Enter the details in App and hit Handshake. When you see "You are connected", press Save in app.
-
+Step 1 : Download beta APK and Zip containg all files from OtpTOPc folder from [Here](https://github.com/Vishvajeet590/CowinPy-Andy/blob/master/Otp2Pc/Otp2Pc.rar). Run OtpServer.py in terminal.
 <img src="https://user-images.githubusercontent.com/42716731/121645334-b3d47700-cab1-11eb-91c8-045e832d6648.png" width="750">
 
+Step 2 : Open app on your device and press Laptop icon on topr right corner. Enter the details in App and hit Handshake. When you see "You are connected", press Save in app.
 <img src="https://user-images.githubusercontent.com/42716731/121645389-c5b61a00-cab1-11eb-872e-57c04c11f329.png" width="250">
-
-
-
 
 That's it now run the main.py in terminal.
 </pre>
