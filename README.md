@@ -47,11 +47,12 @@ V2.0 : Added feature to save JSON for diffrent profiles configuration.
 
 # Setup process for Otp to Pc feature
 
-Step 1 : Download Beta APK and Zip containg all files from OtpTOPc folder from [Here](https://github.com/Vishvajeet590/CowinPy-Andy/blob/master/Otp2Pc/Otp2Pc.rar). Run OtpServer.py in terminal.
+Step 1 : Download Beta APK from [Here](https://github.com/Vishvajeet590/CowinPy-Andy/blob/master/APK/CowinPy%20Test.apk) and Zip containg all files from OtpTOPc folder from [Here](https://github.com/Vishvajeet590/CowinPy-Andy/blob/master/Otp2Pc/Otp2Pc.rar). Run OtpServer.py in terminal.
 
 <img src="https://user-images.githubusercontent.com/42716731/121645334-b3d47700-cab1-11eb-91c8-045e832d6648.png" width="750">
 
-Step 2 : Open app on your device and press Laptop icon on topr right corner. Enter the details in App and hit Handshake. When you see "You are connected", press Save in app.
+Step 2 : Open app on your device and press Laptop icon on top right corner. Enter the details in App and hit Handshake. When you see "You are connected", press Save in app.<br />
+         ( I have not added many checks (LAZY) so please enter as they appear on screen ) 
 
 <img src="https://user-images.githubusercontent.com/42716731/121645389-c5b61a00-cab1-11eb-872e-57c04c11f329.png" width="250">
 
