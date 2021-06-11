@@ -50,3 +50,21 @@ V2.0 : Added feature to send OTP to PC version of script.
 <img src="https://user-images.githubusercontent.com/42716731/120796764-d702a200-c558-11eb-8045-1a40ed26c965.png" width="550">   
 
 
+
+
+
+# Setup process for Otp to Pc feature
+
+Step 1 : Download beta APK and Zip containg all files from OtpTOPc folder from [Here](https://github.com/Vishvajeet590/CowinPy-Andy/blob/master/Otp2Pc/Otp2Pc.rar).
+Step 2 : Run OtpServer.py in terminal. Enter the details in App and hit Handshake. When you see "You are connected", press Save in app.
+
+<img src="https://user-images.githubusercontent.com/42716731/121645334-b3d47700-cab1-11eb-91c8-045e832d6648.png" width="350">
+
+<img src="https://user-images.githubusercontent.com/42716731/121645389-c5b61a00-cab1-11eb-872e-57c04c11f329.png" width="350">
+
+
+
+
+That's it now run the main.py in terminal.
+
+
