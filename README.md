@@ -28,7 +28,9 @@ V2.0 : Added feature to send OTP to PC version of script.
 
 # Screenshots
 
-<img src="https://user-images.githubusercontent.com/42716731/121064853-b69b4780-c7e5-11eb-9bb7-1317c406bbbe.png" width="250">         <img src="https://user-images.githubusercontent.com/42716731/121064869-bbf89200-c7e5-11eb-8e70-736d350ca904.png" width="250">         <img src="https://user-images.githubusercontent.com/42716731/121064899-c450cd00-c7e5-11eb-98be-8786c0658248.png" width="250">         <img src="https://user-images.githubusercontent.com/42716731/121639083-a6b38a00-caa9-11eb-9461-9b7761361003.png" width="250">
+<img src="https://user-images.githubusercontent.com/42716731/121064853-b69b4780-c7e5-11eb-9bb7-1317c406bbbe.png" width="250">         <img src="https://user-images.githubusercontent.com/42716731/121064869-bbf89200-c7e5-11eb-8e70-736d350ca904.png" width="250">         
+
+<img src="https://user-images.githubusercontent.com/42716731/121639208-d367a180-caa9-11eb-8879-9defade8afda.png" width="250">         <img src="https://user-images.githubusercontent.com/42716731/121639083-a6b38a00-caa9-11eb-9461-9b7761361003.png" width="250">
 
 
 
