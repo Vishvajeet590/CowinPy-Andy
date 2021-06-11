@@ -46,6 +46,7 @@ V2.0 : Added feature to save JSON for diffrent profiles configuration.
 
 
 # Setup process for Otp to Pc feature
+Note : Pc and android device must be connected to a common network (Same wifi or Connect pc with hotspot of Android device )
 
 Step 1 : Download Beta APK from [Here](https://github.com/Vishvajeet590/CowinPy-Andy/blob/master/APK/CowinPy%20Test.apk) and Zip containg all files from OtpTOPc folder from [Here](https://github.com/Vishvajeet590/CowinPy-Andy/blob/master/Otp2Pc/Otp2Pc.rar). Run OtpServer.py in terminal.
 
