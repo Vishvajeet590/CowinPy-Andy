@@ -11,7 +11,7 @@ You can dowload Beta apk from [Here](https://github.com/Vishvajeet590/CowinPy-An
 
 
 
-# Update : 
+# Update ✍ : 
 
 <pre>
 Master Branch
@@ -27,7 +27,7 @@ V2.0 : Added feature to save JSON for diffrent profiles configuration.
      : Fixed crashing bugs.
 </pre>
 
-# Screenshots
+# Screenshots 📱 :
 
 <img src="https://user-images.githubusercontent.com/42716731/121064853-b69b4780-c7e5-11eb-9bb7-1317c406bbbe.png" width="250">         <img src="https://user-images.githubusercontent.com/42716731/121064869-bbf89200-c7e5-11eb-8e70-736d350ca904.png" width="250">         
 
@@ -57,12 +57,12 @@ Step 2 : Open app on your device and press Laptop icon on top right corner. Ente
 
 <img src="https://user-images.githubusercontent.com/42716731/121645389-c5b61a00-cab1-11eb-872e-57c04c11f329.png" width="250">
 
-That's it now run the main.py in terminal.
+That's it now run the main.py in terminal.🤞
 
 <img src="https://user-images.githubusercontent.com/42716731/121648920-a3be9680-cab5-11eb-8384-6dba32e3ba71.png" width="750">
 
 
-# Use Otp2Pc in your project 
+# BONUS : Use Otp2Pc in your project 🤘
 
 Download otpServer.py file from [Here](https://github.com/Vishvajeet590/CowinPy-Andy/blob/master/Otp2Pc) and add it to your working directory
 ```python
